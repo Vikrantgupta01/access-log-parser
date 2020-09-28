@@ -16,11 +16,13 @@ class Client {
 
 
     public static void main(String[] args) {
-
         List<String> logData = getDataReader().fetchData();
         List<AccessLogData> accessLogData = getDataProcessor().parserData(logData);
         Result result = getDataWriter().writeData(accessLogData);
+        printResult(result);
+    }
 
+    private static void printResult(Result result){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Unique Ip address count is : ");
         stringBuilder.append(result.getUniqueIpAddress());
@@ -36,7 +38,6 @@ class Client {
             stringBuilder.append("\n");
         }
         System.out.println(stringBuilder.toString());
-
     }
 
     public static DataReader getDataReader() {

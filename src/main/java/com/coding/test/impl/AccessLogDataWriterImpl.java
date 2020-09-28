@@ -39,7 +39,7 @@ public class AccessLogDataWriterImpl implements DataWriter {
     private   List<String> getSortedUrl(List<AccessLogData> accessLogData){
         List<String> result = new ArrayList<>();
         Map<String, Integer> urlCountMap = new HashMap<>();
-        accessLogData.stream().forEach(data -> urlCountMap.put(data.getUrl(), urlCountMap.getOrDefault(data.getIpAddress(), 0) + 1));
+        accessLogData.stream().forEach(data -> urlCountMap.put(data.getUrl(), urlCountMap.getOrDefault(data.getUrl(), 0) + 1));
         Set<Map.Entry<String, Integer>> entry = urlCountMap.entrySet();
         List<Map.Entry<String, Integer>> entries = new ArrayList<>(entry);
         Collections.sort(entries, (o1, o2) -> {
